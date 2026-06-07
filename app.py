@@ -9,7 +9,8 @@ if st.button("Analyze"):
     if api_key and input_data:
         try:
             genai.configure(api_key=api_key)
-            genai.GenerativeModel('gemini-1.5-flash')
+        genai.GenerativeModel('gemini-1.5-flash')
+        
             response = model.generate_content(f"SMC trader ke hisaab se analyze karein: {input_data}")
             st.write(response.text)
         except Exception as e:
