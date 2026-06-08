@@ -12,7 +12,7 @@ if st.button("Analyze"):
             genai.configure(api_key=api_key)
             # Yahan hum model ka naam 'gemini-pro' use kar rahe hain
             # Ye stable hai aur har jagah kaam karta hai
-            model = genai.GenerativeModel('gemini-pro')
+            model = genai.GenerativeModel('gemini-1.5-flash')
             response = model.generate_content(input_data)
             st.write(response.text)
         except Exception as e:
