@@ -2,8 +2,9 @@ import streamlit as st
 import google.generativeai as genai
 
 st.title("🚀 SMC Trading Assistant")
-api_key = st.text_input("Apni Gemini API Key dalein")
-input_data = st.text_area("Apna Market Data dalein")
+
+api_key = st.text_input("Apni Gemini API Key daalein:", type="password")
+input_data = st.text_input("Apna Market Setup likhein:")
 
 if st.button("Analyze"):
     if api_key and input_data:
@@ -15,5 +16,6 @@ if st.button("Analyze"):
         except Exception as e:
             st.error(f"Error: {e}")
     else:
-        st.write("API Key aur Setup dono bharein.")
+        st.warning("Please API Key aur Setup dono bharein!")
+
         
