@@ -1,4 +1,4 @@
-import streamlit as st
+       import streamlit as st
 import google.generativeai as genai
 
 st.title("🚀 SMC Trading Assistant")
@@ -10,13 +10,13 @@ if st.button("Analyze"):
     if api_key and input_data:
         try:
             genai.configure(api_key=api_key)
-            # Ye naam abhi latest aur working hai
-            model = genai.GenerativeModel('gemini-1.5-flash')
+            
+            
+            model = genai.GenerativeModel('gemini-pro')
             response = model.generate_content(input_data)
             st.write(response.text)
         except Exception as e:
-            st.error(f"Error: {e}")
-            st.write("Tip: Agar error aaye, toh check karo ki aapne Google AI Studio se 'gemini-1.5-flash' ke liye access wali key li hai.")
+            st.error(f"Error details: {e}")
     else:
         st.warning("Please API Key aur Setup dono bharein!")
         
