@@ -1,24 +1,28 @@
 import streamlit as st
-import google.generativeai as genai
+from openai import OpenAI
 
-st.title("🚀 SMC Trading Assistant")
+st.title("🚀 Trading Assistant (Powered by GPT)")
 
-api_key = st.text_input("Apni Gemini API Key daalein:", type="password")
+api_key = st.text_input("Apni OpenAI API Key daalein:", type="password")
 input_data = st.text_input("Apna Market Setup likhein:")
 
 if st.button("Analyze"):
     if api_key and input_data:
         try:
-            genai.configure(api_key=api_key)
-            # Yahan hum model ka naam seedha use karenge
-            model = genai.GenerativeModel('gemini-1.5-flash')
-            response = model.generate_content(input_data)
-            st.write(response.text)
+            client = OpenAI(api_key=api_key)
+            response = client.chat.completions.create(
+                model="gpt-3.5-turbo", # Ya "gpt-4o" agar aapke paas access hai
+                messages=[
+                    {"role": "system", "content": "You are an expert SMC trading analyst."},
+                    {"role": "user", "content": input_data}
+                ]
+            )
+            st.write(response.choices[0].message.content)
         except Exception as e:
             st.error(f"Error: {e}")
-            st.info("Check karo ki API Key sahi hai aur aapke region mein ye model active hai.")
     else:
         st.warning("Please API Key aur Setup dono bharein!")
+
 
 
         
