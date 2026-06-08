@@ -10,13 +10,15 @@ if st.button("Analyze"):
     if api_key and input_data:
         try:
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel('gemini-1.5-flash-latest')
-            
+            # Yahan hum model ka naam seedha use karenge
+            model = genai.GenerativeModel('gemini-1.5-flash')
             response = model.generate_content(input_data)
             st.write(response.text)
         except Exception as e:
             st.error(f"Error: {e}")
+            st.info("Check karo ki API Key sahi hai aur aapke region mein ye model active hai.")
     else:
         st.warning("Please API Key aur Setup dono bharein!")
+
 
         
